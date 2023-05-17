@@ -1,4 +1,5 @@
-﻿
+﻿import { Link } from "react-router-dom"
+
 function Navbar() {
     return (
         <>
@@ -16,14 +17,14 @@ function Navbar() {
                     justify-between 
                     text-lg
                 ">
-                    Blog Pessoal
+                    <Link to='/home' className='text-2xl font-bold uppercase'>Blog Pessoal</Link>
 
                     <div className='flex gap-4'>
                         Postagens
                         Temas
                         Cadastrar tema
                         Perfil
-                        Sair
+                        <Link to='/' className='hover:underline'>Sair</Link>
                     </div>
                 </div>
             </div>
