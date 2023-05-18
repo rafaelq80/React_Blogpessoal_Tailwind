@@ -4,6 +4,7 @@ import Navbar from './components/navbar/Navbar';
 import Home from './pages/home/Home';
 import Login from './pages/login/Login';
 import Cadastro from './pages/cadastro/Cadastro';
+import ListarTemas from './components/temas/listartemas/ListarTemas';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Navbar />
           <div className='min-h-[80vh]'>
             <Routes>
+              <Route path="/temas" element={<ListarTemas />} />
               <Route path="/cadastro" element={<Cadastro />} />
               <Route path="/" element={<Login />} />              
               <Route path="/login" element={<Login />} />
