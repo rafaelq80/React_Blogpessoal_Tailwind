@@ -9,6 +9,7 @@ import ListarPostagens from './components/postagens/listarpostagens/ListarPostag
 import FormularioTema from './components/temas/formulariotema/FormularioTema';
 import DeletarTema from './components/temas/deletartema/DeletarTema';
 import FormularioPostagem from './components/postagens/formulariopostagem/FormularioPostagem';
+import DeletarPostagem from './components/postagens/deletarpostagem/DeletarPostagem';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Navbar />
         <div className='min-h-[80vh]'>
           <Routes>
+            <Route path="/deletarpostagem/:id" element={<DeletarPostagem />} />
             <Route path="/editarpostagem/:id" element={<FormularioPostagem />} />
             <Route path="/cadastrarpostagem" element={<FormularioPostagem />} />
             <Route path="/deletartema/:id" element={<DeletarTema />} />
