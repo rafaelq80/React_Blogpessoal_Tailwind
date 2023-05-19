@@ -1,5 +1,6 @@
 ﻿import { Link } from "react-router-dom"
 import ListarPostagens from "../../components/postagens/listarpostagens/ListarPostagens"
+import ModalPostagem from "../../components/postagens/modalpostagem/ModalPostagem"
 
 function Home() {
     return (
@@ -32,6 +33,7 @@ function Home() {
                         <p className='text-xl'>Expresse aqui seus pensamentos e opniões</p>
 
                         <div className="flex justify-around gap-4">
+                            <ModalPostagem />
                             <Link to='/postagens'>
                                 <button className='
                                     rounded

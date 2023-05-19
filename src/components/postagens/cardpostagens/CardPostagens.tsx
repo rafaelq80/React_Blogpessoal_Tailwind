@@ -25,7 +25,7 @@ function CardPostagem({post}: CardPostagemProps) {
           </div>
         </div>
         <div className="flex">
-        <Link to='' className='w-full text-white bg-indigo-400 hover:bg-indigo-800 flex items-center justify-center py-2'>
+        <Link to='/editarpostagem/0' className='w-full text-white bg-indigo-400 hover:bg-indigo-800 flex items-center justify-center py-2'>
             <button>Editar</button>
           </Link>
           <Link to='' className='text-white bg-red-400 hover:bg-red-700 w-full flex items-center justify-center'>
