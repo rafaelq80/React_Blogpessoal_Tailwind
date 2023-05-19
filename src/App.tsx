@@ -5,7 +5,7 @@ import Home from './pages/home/Home';
 import Login from './pages/login/Login';
 import Cadastro from './pages/cadastro/Cadastro';
 import ListarTemas from './components/temas/listartemas/ListarTemas';
-import ListarPostagens from './components/postagens/listarpostagens/LIstarPostagens';
+import ListarPostagens from './components/postagens/listarpostagens/ListarPostagens';
 
 function App() {
   return (
