@@ -7,6 +7,7 @@ import Cadastro from './pages/cadastro/Cadastro';
 import ListarTemas from './components/temas/listartemas/ListarTemas';
 import ListarPostagens from './components/postagens/listarpostagens/ListarPostagens';
 import FormularioTema from './components/temas/formulariotema/FormularioTema';
+import DeletarTema from './components/temas/deletartema/DeletarTema';
 
 function App() {
   return (
@@ -15,7 +16,9 @@ function App() {
         <Navbar />
           <div className='min-h-[80vh]'>
             <Routes>
-              <Route path="/cadastrarTema" element={<FormularioTema />} />
+              <Route path="/deletartema/:id" element={<DeletarTema />} />
+              <Route path="/editartema/:id" element={<FormularioTema />} />
+              <Route path="/cadastrartema" element={<FormularioTema />} />
               <Route path="/postagens" element={<ListarPostagens />} />
               <Route path="/temas" element={<ListarTemas />} />
               <Route path="/cadastro" element={<Cadastro />} />
