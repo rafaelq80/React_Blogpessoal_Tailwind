@@ -28,3 +28,7 @@ export const api = axios.create({
     const resposta = await api.put(url, dados, header)
     setDados(resposta.data)
   }
+
+  export const deletar = async(url: string, header: Object) => {
+    await api.delete(url, header)
+  }
