@@ -13,17 +13,18 @@ function App() {
     <>
       <BrowserRouter>
         <Navbar />
-          <div className='min-h-[80vh]'>
-            <Routes>
-              <Route path="/cadastrarTema" element={<FormularioTema />} />
-              <Route path="/postagens" element={<ListarPostagens />} />
-              <Route path="/temas" element={<ListarTemas />} />
-              <Route path="/cadastro" element={<Cadastro />} />
-              <Route path="/" element={<Login />} />              
-              <Route path="/login" element={<Login />} />
-              <Route path="/home" element={<Home />} />
-            </Routes>
-          </div>  
+        <div className='min-h-[80vh]'>
+          <Routes>
+            <Route path="/editartema/:id" element={<FormularioTema />} />
+            <Route path="/cadastrarTema" element={<FormularioTema />} />
+            <Route path="/postagens" element={<ListarPostagens />} />
+            <Route path="/temas" element={<ListarTemas />} />
+            <Route path="/cadastro" element={<Cadastro />} />
+            <Route path="/" element={<Login />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/home" element={<Home />} />
+          </Routes>
+        </div>
         <Footer />
       </BrowserRouter>
     </>
