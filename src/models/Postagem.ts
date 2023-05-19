@@ -9,3 +9,4 @@ export default interface Postagem {
   tema: Tema | null;
   usuario: Usuario | null;
 }
+
