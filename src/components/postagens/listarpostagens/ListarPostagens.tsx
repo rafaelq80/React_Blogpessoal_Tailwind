@@ -3,14 +3,18 @@ import { listar } from '../../../services/Service';
 import CardPostagem from '../cardpostagens/CardPostagens';
 import Postagem from '../../../models/Postagem';
 import { useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { AuthContext } from '../../../contexts/AuthContext';
 
 function ListarPostagens() {
 
-  const [token, setToken] = useLocalStorage('token');
+  // const [token, setToken] = useLocalStorage('token');
   const [postagens, setPostagens] = useState<Postagem[]>([]);
 
   let navigate = useNavigate();
+
+  const { usuario } = useContext(AuthContext);
+  const token = usuario.token;
 
   useEffect(() => {
     if (token === '') {
