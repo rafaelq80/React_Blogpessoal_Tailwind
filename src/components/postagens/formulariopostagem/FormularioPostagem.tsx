@@ -27,7 +27,7 @@
         <div className="flex flex-col gap-2">
           <p>Tema da postagem</p>
           <select name="tema" id="tema" className='border p-2 border-slate-800 rounded' >
-            <option value='' selected disabled>'Selecione um tema'</option>
+            <option value='' selected disabled>Selecione um tema</option>
             
           </select>
         </div>
