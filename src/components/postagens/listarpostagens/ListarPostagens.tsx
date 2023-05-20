@@ -13,6 +13,7 @@ function ListarPostagens() {
 
   let navigate = useNavigate();
 
+  const { handleLogout } = useContext(AuthContext)
   const { usuario } = useContext(AuthContext);
   const token = usuario.token;
 
@@ -24,12 +25,22 @@ function ListarPostagens() {
   }, [token]);
 
   async function buscarPostagens() {
+    try{
     await listar('/postagens', setPostagens, {
       headers: {
         Authorization: token,
       },
     });
+  } catch (error: any) {
+    if (error.response.status === 403) {
+        alert('O Token Expirou! Faça o login novamente');
+        handleLogout();
+        navigate('/login');
+    } else {
+        alert('Erro ao listar postagens.');
+    }
   }
+}
 
   useEffect(() => {
     buscarPostagens();
