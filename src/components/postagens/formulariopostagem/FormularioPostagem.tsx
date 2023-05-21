@@ -1,6 +1,6 @@
-﻿import { useState, useEffect, ChangeEvent } from "react";
+﻿import { ChangeEvent, useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import useLocalStorage from "react-use-localstorage";
+import { AuthContext } from "../../../contexts/AuthContext";
 import Postagem from "../../../models/Postagem";
 import Tema from "../../../models/Tema";
 import { atualizar, cadastrar, listar } from "../../../services/Service";
@@ -11,7 +11,8 @@ function FormularioPostagem() {
 
   const { id } = useParams<{ id: string }>();
 
-  const [token, setToken] = useLocalStorage('token');
+  const { usuario } = useContext(AuthContext);
+  const token = usuario.token;
 
   const [temas, setTemas] = useState<Tema[]>([]);
 
@@ -81,6 +82,7 @@ function FormularioPostagem() {
       ...postagem,
       [e.target.name]: e.target.value,
       tema: tema,
+      usuario: usuario,
     });
   }
 

@@ -1,13 +1,16 @@
 ﻿import { useNavigate } from "react-router-dom";
 import { listar } from "../../../services/Service";
 import CardTemas from "../cardtemas/CardTemas";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Tema from "../../../models/Tema";
 import useLocalStorage from "react-use-localstorage";
+import { AuthContext } from "../../../contexts/AuthContext";
 
 function ListarTemas() {
 
-    const [token, setToken] = useLocalStorage('token');
+    const { usuario } = useContext(AuthContext);
+    const token = usuario.token;
+
     const [temas, setTemas] = useState<Tema[]>([]);
 
     let navigate = useNavigate();
@@ -27,8 +30,8 @@ function ListarTemas() {
 
     useEffect(() => {
         buscarTemas();
-      }, [temas.length]);
-      
+    }, [temas.length]);
+
     return (
         <>
             <div className="flex justify-center w-full my-4">

@@ -1,6 +1,6 @@
-﻿import { useState, useEffect } from "react";
+﻿import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import useLocalStorage from "react-use-localstorage";
+import { AuthContext } from "../../../contexts/AuthContext";
 import Postagem from "../../../models/Postagem";
 import { deletar, listar } from "../../../services/Service";
 
@@ -12,7 +12,8 @@ function DeletarPostagem() {
 
   const { id } = useParams<{ id: string }>()
 
-  const [token, setToken] = useLocalStorage('token');
+  const { usuario } = useContext(AuthContext);
+  const token = usuario.token;
 
   async function buscarPorId(id: string) {
     await listar(`/postagens/${id}`, setPostagem, {
@@ -79,3 +80,4 @@ function DeletarPostagem() {
 }
 
 export default DeletarPostagem;
+

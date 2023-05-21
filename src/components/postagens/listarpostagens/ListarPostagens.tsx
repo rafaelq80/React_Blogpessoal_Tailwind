@@ -1,19 +1,16 @@
-﻿import useLocalStorage from 'react-use-localstorage';
+﻿import { useContext, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../../contexts/AuthContext';
+import Postagem from '../../../models/Postagem';
 import { listar } from '../../../services/Service';
 import CardPostagem from '../cardpostagens/CardPostagens';
-import Postagem from '../../../models/Postagem';
-import { useNavigate } from 'react-router-dom';
-import { useContext, useEffect, useState } from 'react';
-import { AuthContext } from '../../../contexts/AuthContext';
 
 function ListarPostagens() {
 
-  // const [token, setToken] = useLocalStorage('token');
   const [postagens, setPostagens] = useState<Postagem[]>([]);
 
   let navigate = useNavigate();
 
-  const { handleLogout } = useContext(AuthContext)
   const { usuario } = useContext(AuthContext);
   const token = usuario.token;
 

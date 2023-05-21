@@ -1,6 +1,6 @@
-﻿import { useState, useEffect } from "react";
+﻿import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import useLocalStorage from "react-use-localstorage";
+import { AuthContext } from "../../../contexts/AuthContext";
 import Tema from "../../../models/Tema";
 import { deletar, listar } from "../../../services/Service";
 
@@ -12,13 +12,14 @@ function DeletarTema() {
 
     const { id } = useParams<{ id: string }>()
 
-    const [token, setToken] = useLocalStorage('token');
+    const { usuario } = useContext(AuthContext);
+    const token = usuario.token;
 
     async function buscarPorId(id: string) {
         await listar(`/temas/${id}`, setTema, {
             headers: {
                 'Authorization': token
-            } 
+            }
         })
     }
 

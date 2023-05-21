@@ -1,18 +1,18 @@
-﻿import { useState, useEffect, ChangeEvent } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import useLocalStorage from "react-use-localstorage";
-import Tema from "../../../models/Tema";
-import { listar, atualizar, cadastrar } from "../../../services/Service";
+﻿import React, { ChangeEvent, useContext, useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { AuthContext } from '../../../contexts/AuthContext';
+import Tema from '../../../models/Tema';
+import { atualizar, listar, cadastrar } from '../../../services/Service';
 
 function FormularioTema() {
-
   const [tema, setTema] = useState<Tema>({} as Tema);
 
   let navigate = useNavigate();
 
   const { id } = useParams<{ id: string }>();
 
-  const [token, setToken] = useLocalStorage('token');
+  const { usuario } = useContext(AuthContext);
+  const token = usuario.token;
 
   async function buscarPorId(id: string) {
     await listar(`/temas/${id}`, setTema, {
@@ -84,8 +84,8 @@ function retornar() {
     }
   }, [token]);
 
-    return (  
-        <div className="container flex flex-col items-center justify-center mx-auto">
+  return (
+    <div className="container flex flex-col items-center justify-center mx-auto">
       <h1 className="text-4xl text-center my-8">
         {id === undefined ? 'Cadastre um novo tema' : 'Editar tema'}
       </h1>
@@ -110,7 +110,7 @@ function retornar() {
         </button>
       </form>
     </div>
-    );
+  );
 }
 
 export default FormularioTema;
