@@ -17,20 +17,16 @@ function ListarPostagens() {
   useEffect(() => {
     if (token === '') {
       alert('Você precisa estar logado');
-      navigate('/login');
+      navigate('/');
     }
   }, [token]);
 
   async function buscarPostagens() {
-    try{
     await listar('/postagens', setPostagens, {
       headers: {
         Authorization: token,
       },
     });
-  } catch (error) {
-      alert('Erro ao listar postagens.');
-  }
 }
 
   useEffect(() => {
