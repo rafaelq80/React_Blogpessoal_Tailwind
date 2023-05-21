@@ -31,14 +31,8 @@ function ListarPostagens() {
         Authorization: token,
       },
     });
-  } catch (error: any) {
-    if (error.response.status === 403) {
-        alert('O Token Expirou! Faça o login novamente');
-        handleLogout();
-        navigate('/login');
-    } else {
-        alert('Erro ao listar postagens.');
-    }
+  } catch (error) {
+      alert('Erro ao listar postagens.');
   }
 }
 
