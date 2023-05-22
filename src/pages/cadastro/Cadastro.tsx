@@ -3,6 +3,7 @@ import './Cadastro.css'
 import Usuario from '../../models/Usuario';
 import { useState, useEffect, ChangeEvent } from 'react';
 import { cadastrarUsuario } from '../../services/Service';
+import { ToastAlerta } from '../../utils/ToastAlerta';
 
 function Cadastro() {
 
@@ -54,14 +55,14 @@ function Cadastro() {
 
       try {
         await cadastrarUsuario(`/usuarios/cadastrar`, usuario, setUsuarioResposta)
-        alert('Usuário cadastrado com sucesso')
+        ToastAlerta('Usuário cadastrado com sucesso', 'sucesso')
 
       } catch (error) {
-        alert('Erro ao cadastrar o Usuário')
+        ToastAlerta('Erro ao cadastrar o Usuário', 'erro')
       }
 
     } else {
-      alert('Dados inconsistentes. Verifique as informações de cadastro.')
+      ToastAlerta('Dados inconsistentes. Verifique as informações de cadastro.', 'erro')
       setUsuario({ ...usuario, senha: "" }) // Reinicia o campo de Senha
       setConfirmaSenha("")                  // Reinicia o campo de Confirmar Senha
     }
@@ -134,7 +135,7 @@ function Cadastro() {
             />
           </div>
           <div className="flex justify-around w-full gap-8">
-          <Link to='/login' >
+          <Link to='/' >
                 <button className='rounded text-white bg-red-400 hover:bg-red-700 px-8 py-2'>
                 Cancelar
                 </button>

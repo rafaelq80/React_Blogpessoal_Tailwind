@@ -3,6 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthContext';
 import Tema from '../../../models/Tema';
 import { atualizar, listar, cadastrar } from '../../../services/Service';
+import { ToastAlerta } from '../../../utils/ToastAlerta';
 
 function FormularioTema() {
   const [tema, setTema] = useState<Tema>({} as Tema);
@@ -24,63 +25,63 @@ function FormularioTema() {
 
   useEffect(() => {
     if (id !== undefined) {
-        buscarPorId(id)
+      buscarPorId(id)
     }
-}, [id])
+  }, [id])
 
-function atualizarEstado(e: ChangeEvent<HTMLInputElement>) {
-  setTema({
+  function atualizarEstado(e: ChangeEvent<HTMLInputElement>) {
+    setTema({
       ...tema,
       [e.target.name]: e.target.value
-  })
+    })
 
-  console.log(JSON.stringify(tema))
-}
-
-async function gerarNovoTema(e: ChangeEvent<HTMLFormElement>) {
-  e.preventDefault()
-
-  if (id !== undefined) {
-      try {
-          await atualizar(`/temas`, tema, setTema, {
-              headers: {
-                  'Authorization': token
-              }
-          })
-
-          alert('Tema atualizado com sucesso')
-          retornar()
-
-      } catch (error) {
-          alert('Erro ao atualizar o Tema')
-      }
-
-  } else {
-      try {
-          await cadastrar(`/temas`, tema, setTema, {
-              headers: {
-                  'Authorization': token
-              }
-          })
-
-          alert('Tema cadastrado com sucesso')
-
-      } catch (error) {
-          alert('Erro ao cadastrado o Tema')
-      }
+    console.log(JSON.stringify(tema))
   }
 
-  retornar()
-}
+  async function gerarNovoTema(e: ChangeEvent<HTMLFormElement>) {
+    e.preventDefault()
 
-function retornar() {
-  navigate("/temas")
-}
+    if (id !== undefined) {
+      try {
+        await atualizar(`/temas`, tema, setTema, {
+          headers: {
+            'Authorization': token
+          }
+        })
+
+        ToastAlerta('Tema atualizado com sucesso', 'sucesso')
+        retornar()
+
+      } catch (error) {
+        ToastAlerta('Erro ao atualizar o Tema', 'erro')
+      }
+
+    } else {
+      try {
+        await cadastrar(`/temas`, tema, setTema, {
+          headers: {
+            'Authorization': token
+          }
+        })
+
+        ToastAlerta('Tema cadastrado com sucesso', 'sucesso')
+
+      } catch (error) {
+        ToastAlerta('Erro ao cadastrar o Tema', 'erro')
+      }
+    }
+
+    retornar()
+  }
+
+  function retornar() {
+    navigate("/temas")
+  }
 
   useEffect(() => {
     if (token === '') {
-      alert('Você precisa estar logado');
-      navigate('/login');
+      ToastAlerta('Você precisa estar logado', 'info');
+      navigate('/');
     }
   }, [token]);
 

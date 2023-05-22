@@ -4,6 +4,7 @@ import { AuthContext } from "../../../contexts/AuthContext";
 import Postagem from "../../../models/Postagem";
 import Tema from "../../../models/Tema";
 import { atualizar, cadastrar, listar } from "../../../services/Service";
+import { ToastAlerta } from "../../../utils/ToastAlerta";
 
 function FormularioPostagem() {
 
@@ -56,7 +57,7 @@ function FormularioPostagem() {
 
   useEffect(() => {
     if (token === '') {
-      alert('Você precisa estar logado');
+      ToastAlerta('Você precisa estar logado', 'info');
       navigate('/');
     }
   }, [token]);
@@ -103,10 +104,10 @@ function FormularioPostagem() {
           },
         });
 
-        alert('Postagem atualizada com sucesso');
+        ToastAlerta('Postagem atualizada com sucesso', 'sucesso');
         retornar();
       } catch (error) {
-        alert('Erro ao atualizar a Postagem');
+        ToastAlerta('Erro ao atualizar a Postagem', 'erro');
       }
     } else {
       try {
@@ -116,10 +117,10 @@ function FormularioPostagem() {
           },
         });
 
-        alert('Postagem cadastrada com sucesso');
+        ToastAlerta('Postagem cadastrada com sucesso', 'sucesso');
         retornar();
       } catch (error) {
-        alert('Erro ao cadastrar a Postagem');
+        ToastAlerta('Erro ao cadastrar a Postagem', 'erro');
       }
     }
   }
