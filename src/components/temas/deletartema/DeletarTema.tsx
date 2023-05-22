@@ -49,7 +49,7 @@ function DeletarTema() {
                 }
             })
 
-            ToastAlerta('Tema apagado com sucesso', 'successo')
+            ToastAlerta('Tema apagado com sucesso', 'sucesso')
 
         } catch (error) {
             ToastAlerta('Erro ao apagar o Tema', 'erro')
