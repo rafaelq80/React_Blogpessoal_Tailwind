@@ -10,7 +10,7 @@ function Navbar() {
 
     function logout() {
         handleLogout()
-        ToastAlerta('Usuário deslogado com sucesso', 'sucesso')
+        ToastAlerta('Usuário desconectado com sucesso', 'sucesso')
         navigate('/')
     }
 
