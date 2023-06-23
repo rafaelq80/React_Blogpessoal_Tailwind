@@ -158,8 +158,8 @@ function FormularioPostagem() {
         </div>
         <div className="flex flex-col gap-2">
           <p>Tema da postagem</p>
-          <select onChange={(e) => buscarTemaPorId(e.currentTarget.value)} name="tema" id="tema" className='border p-2 border-slate-800 rounded' >
-            <option value='' selected disabled>Selecione um tema</option>
+          <select value={postagem.tema?.id !== undefined ? postagem.tema?.id : ''} onChange={(e) => buscarTemaPorId(e.currentTarget.value)} name="tema" id="tema" className='border p-2 border-slate-800 rounded' >
+            <option value='' >Selecione um tema</option>
             {temas.map((tema) => (
               <>
                 <option value={tema.id}>{tema.descricao}</option>
@@ -167,8 +167,8 @@ function FormularioPostagem() {
             ))}
           </select>
         </div>
-        <button disabled={carregandoTema} type='submit' className='rounded disabled:bg-slate-200 bg-indigo-400 hover:bg-indigo-800 text-white font-bold w-1/2 mx-auto block py-2'>
-        {carregandoTema ? <span>Carregando</span> : id !== undefined ? 'Atualizar' : 'Cadastrar'}
+        <button disabled={postagem.tema?.id === undefined || postagem.tema?.id === 0} type='submit' className='rounded disabled:bg-slate-200 bg-indigo-400 hover:bg-indigo-800 text-white font-bold w-1/2 mx-auto block py-2'>
+        {postagem.tema?.id === undefined ? <span>Carregando</span> : id !== undefined ? 'Atualizar' : 'Cadastrar'}
         </button>
       </form>
     </div>
